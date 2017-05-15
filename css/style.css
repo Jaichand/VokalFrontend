@@ -1,15 +1,6 @@
 .pad-md-15 {
   padding:10px;
 }
-/*.card {
-  margin-bottom: 30px;
-}
-.card-header{
-  height: 30px;line-height:30px; overflow: hidden;padding:0px;
-}
-.card-body{
-  padding:10px;
-}*/
 .card{
   position: relative;
   height:180px;
