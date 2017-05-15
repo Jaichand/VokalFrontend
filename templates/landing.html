@@ -4,6 +4,12 @@
 <ul>
   <li>Lat: {{ lat }}</li>
   <li>Lng: {{ lng }}</li>
-  <li>Type: {{ type }}</li>
+  <li>Type:
+    <ul>
+      <li ng-repeat="type in types">
+       {{type}} <br/>
+     </li>
+    </ul>
+  </li>
   <li>Name: {{ name }}</li>
 </ul>

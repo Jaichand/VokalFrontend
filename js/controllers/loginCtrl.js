@@ -4,7 +4,7 @@ angular.module('vokalAssignment')
   var validateEmail =  function(email) {
     return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   };
-  $scope.user = User.login();
+  $scope.user = {};
   $scope.login = function (form) {
     if (form.$invalid) {
       alert("Something Wrong");
@@ -14,10 +14,13 @@ angular.module('vokalAssignment')
       alert('Email Address Is Not Correct');
     }
     else {
-      user.$login()
+      console.log("$scope.user", $scope.user);
+      User.login($scope.user).$promise
       .then (function (user) {
+        console.log("Any user ", user);
         $rootScope.$broadcast('hideLoginAlert');
         localStorage.setItem('isLoggedIn', "true");
+        // user = User.$loggedInUser().$promise;
         $location.url("/home");
       });
     }

@@ -1,17 +1,31 @@
 //author : Jaichand
 angular.module('vokalAssignment')
-.controller('LandingCtrl', function($scope, ){
+.controller('LandingCtrl', function($scope, Locations){
   $scope.lat = undefined;
   $scope.lng = undefined;
   $scope.$on('gmPlacesAutocomplete::placeChanged', function(){
     console.log($scope.autocomplete.getPlace());
     var location = $scope.autocomplete.getPlace()
     var geometry = location.geometry.location;
-    $scope.type = []
+    $scope.types = []
+    $scope.types = location.types
     $scope.name = location.name;
-    $scope.type = location.types
-    $scope.lat = geometry.lat();
     $scope.lng = geometry.lng();
+    $scope.lat = geometry.lat();
+    var saveLoc = {
+      name: $scope.name,
+      location: {
+        type: $scope.types,
+        coordinates: [$scope.lat, $scope.lat]
+      }
+    }
+    Locations.saveLocation(saveLoc).$promise
+    .then (function (location) {
+      console.log("Locations is here", location);
+    })
+    .catch (function (err) {
+      console.log("Error found in locations", err);
+    })
     $scope.$apply();
   });
 });
