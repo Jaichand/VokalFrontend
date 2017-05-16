@@ -1,1 +1,3 @@
 # VokalFrontend
+
+bower install
