@@ -1,10 +1,11 @@
 //author : Jaichand
 angular.module('vokalAssignment')
-.controller('LoginCtrl', function($scope, $location, $rootScope, User) {
+.controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'User', 'AuthTokenFactory',
+ function($scope, $location, $rootScope, User, AuthTokenFactory) {
   var validateEmail =  function(email) {
     return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   };
-  $scope.user = User.login();
+  $scope.user = {};
   $scope.login = function (form) {
     if (form.$invalid) {
       alert("Something Wrong");
@@ -14,12 +15,19 @@ angular.module('vokalAssignment')
       alert('Email Address Is Not Correct');
     }
     else {
-      user.$login()
+      console.log("$scope.user", $scope.user);
+      User.login($scope.user).$promise
       .then (function (user) {
         $rootScope.$broadcast('hideLoginAlert');
         localStorage.setItem('isLoggedIn', "true");
-        $location.url("/home");
+        AuthTokenFactory.setToken(user.token)
+        if (user.success){
+          $location.url("/home");
+        }
+        else {
+          console.log("User not found");
+        }
       });
     }
   }
-});
+}]);

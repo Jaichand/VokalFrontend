@@ -9,7 +9,7 @@ var app = angular.module('vokalAssignment', [
 ]);
 
 app.config(['$routeProvider', '$httpProvider' ,function($routeProvider, $httpProvider){
-  // $httpProvider.interceptors.push('authInterceptor');
+  $httpProvider.interceptors.push('authInterceptor');
   $routeProvider
   .when('/login', {
     templateUrl : 'templates/login.html',

@@ -1,9 +1,9 @@
 //author : Jaichand
 angular.module('vokalAssignment')
-.factory('User', function($resource, $http) {
+.factory('User', function($resource, $http, $rootScope, $location) {
    var res;
-   res = $resource('http://localhost:8080/api/:id', {
-     'id': '@id'
+   res = $resource('http://localhost:8080/api/user/:id', {
+     "id": "@id"
    }, {
        login: {
          url: 'http://localhost:8080/api/authenticate',
@@ -16,7 +16,11 @@ angular.module('vokalAssignment')
      loggedInUser: {
        url: 'http://localhost:8080/api/loggedInUser',
        method: 'GET'
+     },
+     signUp: {
+       url: 'http://localhost:8080/api/signUp',
+       method: 'POST'
      }
  });
- return res
+return res;
 });
