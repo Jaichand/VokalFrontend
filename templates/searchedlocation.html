@@ -6,7 +6,7 @@
   </h1>
   <div class="col-sm-2"></div>
   <div class="col-sm-8 display-block" >
-    <table class="table">
+    <table class="table" ng-if="locations.length">
       <th>Name</th>
       <th>lat</th>
       <th>Long</th>
@@ -24,6 +24,9 @@
         </td>
       </tr>
     </table>
+    <div ng-if="!locations.length">
+      <label>No location Searched</label>
+    </div>
   </div>
   <div class="col-sm-2"></div>
 </div>

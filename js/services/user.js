@@ -16,24 +16,11 @@ angular.module('vokalAssignment')
      loggedInUser: {
        url: 'http://localhost:8080/api/loggedInUser',
        method: 'GET'
+     },
+     signUp: {
+       url: 'http://localhost:8080/api/signUp',
+       method: 'POST'
      }
  });
-//  angular.extend(res.prototype, {
-//    login: function (data) {
-//      var user = this.$login();
-//      that = this;
-//      user.$promise
-//      .then (function (response) {
-//         $rootScope.$broadcast('hideLoginAlert');
-//         localStorage.setItem('isLoggedIn', "true");
-//         user = that.$loggedInUser();
-//         $location.url("/home");
-//      })
-//      .catch (function (err) {
-//        console.log("Error while log in");
-//      });
-//    }
-// });
-console.log(res , "I am in service");
 return res;
 });

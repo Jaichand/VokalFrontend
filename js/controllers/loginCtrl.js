@@ -18,12 +18,15 @@ angular.module('vokalAssignment')
       console.log("$scope.user", $scope.user);
       User.login($scope.user).$promise
       .then (function (user) {
-        console.log("Any user ", user);
         $rootScope.$broadcast('hideLoginAlert');
         localStorage.setItem('isLoggedIn', "true");
-        console.log(user.token);
         AuthTokenFactory.setToken(user.token)
-        $location.url("/home");
+        if (user.success){
+          $location.url("/home");
+        }
+        else {
+          console.log("User not found");
+        }
       });
     }
   }
