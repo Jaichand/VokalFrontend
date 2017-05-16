@@ -1,15 +1,25 @@
-<h3>Enter a location:</h3>
-<input type="text" gm-places-autocomplete ng-model="autocomplete" style="width: 300px;"/>
-<h3>Results:</h3>
-<ul>
-  <li>Lat: {{ lat }}</li>
-  <li>Lng: {{ lng }}</li>
-  <li>Type:
+<div class="col-sm-12">
+  <h1 class="page-header">
+    <button type="button" class="btn btn-primary navbar-btn float-left" ng-click="location.href='#/searchedlocation'">Locations History</button>
+    Vokal Google Search API
+    <button type="button" class="btn btn-primary navbar-btn float-right" ng-click="location.href='#/login'">Log Out</button>
+  </h1>
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4 display-block" >
+    <input class="form-group" type="text" gm-places-autocomplete ng-model="autocomplete" style="width: 300px;"/>
+    <h3>Results:</h3>
     <ul>
-      <li ng-repeat="type in types">
-       {{type}} <br/>
-     </li>
+      <li>Lat: {{ lat }}</li>
+      <li>Lng: {{ lng }}</li>
+      <li>Type:
+        <ul>
+          <li ng-repeat="type in types">
+           {{type}} <br/>
+         </li>
+        </ul>
+      </li>
+      <li>Name: {{ name }}</li>
     </ul>
-  </li>
-  <li>Name: {{ name }}</li>
-</ul>
+  </div>
+  <div class="col-sm-4"></div>
+</div>

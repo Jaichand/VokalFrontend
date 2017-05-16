@@ -1,8 +1,9 @@
 //author : Jaichand
 angular.module('vokalAssignment')
-.controller('LandingCtrl', function($scope, Locations){
+.controller('LandingCtrl', function($scope, Locations, $location){
   $scope.lat = undefined;
   $scope.lng = undefined;
+  $scope.location = location;
   $scope.$on('gmPlacesAutocomplete::placeChanged', function(){
     console.log($scope.autocomplete.getPlace());
     var location = $scope.autocomplete.getPlace()
@@ -22,6 +23,7 @@ angular.module('vokalAssignment')
     Locations.saveLocation(saveLoc).$promise
     .then (function (location) {
       console.log("Locations is here", location);
+      $scope.autocomplete = ''
     })
     .catch (function (err) {
       console.log("Error found in locations", err);
