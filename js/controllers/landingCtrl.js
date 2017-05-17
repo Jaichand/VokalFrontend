@@ -1,6 +1,9 @@
 //author : Jaichand
 angular.module('vokalAssignment')
 .controller('LandingCtrl', function($scope, Locations, $location){
+  if (!localStorage.getItem('isLoggedIn')) {
+    $location.url('/login')
+  }
   $scope.lat = undefined;
   $scope.lng = undefined;
   $scope.location = location;
@@ -30,4 +33,9 @@ angular.module('vokalAssignment')
     })
     $scope.$apply();
   });
+  $scope.logOut = function () {
+    localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem('auth-token')
+    $location.url('/login');
+  }
 });
