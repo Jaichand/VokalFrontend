@@ -5,7 +5,8 @@ var app = angular.module('vokalAssignment', [
   'ui.bootstrap',
   'ngResource',
   'ngCookies',
-  'gm'
+  'gm',
+  'oitozero.ngSweetAlert'
 ]);
 
 app.config(['$routeProvider', '$httpProvider' ,function($routeProvider, $httpProvider){

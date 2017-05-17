@@ -10,6 +10,11 @@ angular.module('vokalAssignment')
   })
   .catch (function(err) {
     console.log("Err", err);
-  })
-
+  });
+  
+  $scope.logOut = function () {
+    localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem('auth-token')
+    $location.url('/login');
+  };
 });

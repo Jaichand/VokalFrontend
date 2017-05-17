@@ -15,7 +15,6 @@ angular.module('vokalAssignment')
       alert('Email Address Is Not Correct');
     }
     else {
-      console.log("$scope.user", $scope.user);
       User.login($scope.user).$promise
       .then (function (user) {
         $rootScope.$broadcast('hideLoginAlert');
