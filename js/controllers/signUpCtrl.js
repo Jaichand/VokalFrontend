@@ -1,21 +1,23 @@
 //author : Jaichand
 angular.module('vokalAssignment')
-.controller('SignUpCtrl', function($scope, User, $location){
+.controller('SignUpCtrl', function($scope, User, $location, SweetAlert){
   var validateEmail =  function(email) {
     return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   };
   $scope.user = {};
+  $scope.passwordMatched = false;
   $scope.submitForm = function (form) {
+    console.log("Here");
     if (form.$invalid) {
-      alert("Something Wrong");
+      SweetAlert.swal('Alert', "Something Worng");
       return
     }
     if (!validateEmail($scope.user.email)) {
-      alert('Email Address Is Not Correct');
+      SweetAlert.swal('Error', "Email Address Is Not Correct");
     }
     else {
       if ($scope.user.password != $scope.user.repassword) {
-        alert("password is not matching")
+        SweetAlert.swal('Error', "password is not matching");
         return
       }
       else {
@@ -35,5 +37,13 @@ angular.module('vokalAssignment')
         })
       }
     }
-  }
+  };
+  $scope.$watchCollection('user.repassword', function() {
+    if ($scope.user.password !== '' && $scope.user.password !== undefined && $scope.user.password === $scope.user.repassword) {
+      $scope.passwordMatched = true;
+    }
+    else {
+      $scope.passwordMatched = false;
+    }
+  });
 });
